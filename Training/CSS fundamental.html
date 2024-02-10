@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set CSS properties and Values (syntax)</title>
+    <link rel="stylesheet" type="text/css" href="CSS fundamental.css">
+</head>
+
+
+<body>
+
+    <h3>1.Set CSS properties and Values (syntax)</h3>
+
+    <!--Basic syntax:
+    -consists of selector and declaration block
+    -selector points to HTML element to style
+    -declaration block contains one or more declairsion separated by semicolon
+    -each declaration consists of property and value -->
+
+    <p id="color">change text color</p>
+
+    <p id="background_color">change background-color</p>
+
+    <p id="font_family">Change text font</p>
+
+    <p id="text_align">align text</p>
+
+    <p id="box_model_property">box model property</p>
+
+    <p id="position_property">position property</p>
+
+
+
+
+    <br><br><br>
+    <hr> <br><br>
+    <!--------------------------------------------------------------------------->
+
+
+
+
+
+    <h3>2. Use Selectors to Style HTML Elements</h3>
+
+    <p>target p tag</p>
+    <div class="alert">target class</div>
+    <div id="header">target id </div>
+    <a href="#">target link href</a><br>
+    <input type="text" placeholder="target input type text">
+
+
+
+
+
+    <br><br><br>
+    <hr> <br><br>
+    <!--------------------------------------------------------------------------->
+
+
+
+
+
+    <h3>3.Utilize Selector Specificity to Control Applied Styles </h3>
+
+    <h4>ID vs Class:</h4>
+    <div id="header" class="main">Text</div>
+
+    <h4>Class vs Type:</h4>
+    <p class="highlight">Text</p>
+
+
+
+
+
+    <br><br><br>
+    <hr> <br><br>
+    <!--------------------------------------------------------------------------->
+
+
+
+    <h3>4. Style Elements Using the Cascade</h3>
+    <!-- Note -->
+    <!-- 
+        1.If two selectors have equal specificity, the last one declared in the CSS will take precedence.
+        2. The !important rule overrides specificity and source order.
+        Example: color: blue !important; will override other color properties, even if they are more specific or declared later.
+    -->
+    <p id="content" class="text">This text will be yellow.</p>
+    <p class="text">This text will also be yellow.</p>
+    <p>This text will be green.</p>
+
+
+
+
+
+
+    <br><br><br>
+    <hr> <br><br>
+    <!--------------------------------------------------------------------------->
+
+
+
+
+    <h3>5. Understand CSS Layout with the Box Model</h3>
+    <div class="box">Content inside a box</div>
+
+
+
+
+    <br><br><br>
+    <hr> <br><br>
+    <!--------------------------------------------------------------------------->
+
+
+
+
+
+    <h3>6. Control HTML Elements with Different CSS Units</h3>
+    <div class="container_unit">
+        <p class="unit">Sample Text</p>
+    </div>
+
+
+
+
+
+
+    <br><br><br>
+    <hr> <br><br>
+    <!--------------------------------------------------------------------------->
+
+
+
+
+    <h3>7. Manipulate Colors with CSS</h3>
+    <div class="hex">Hexadecimal </div>
+    <div class="rgb">RGB</div>
+    <div class="hsl">HSL</div>
+
+
+
+
+
+
+
+    <br><br><br>
+    <hr> <br><br>
+    <!--------------------------------------------------------------------------->
+
+
+
+
+    <h3>8. Add Backgrounds to HTML Elements</h3>
+
+    <div class="background_example">Content goes here</div>
+
+
+
+
+
+
+
+
+
+    <br><br><br>
+    <hr> <br><br>
+    <!--------------------------------------------------------------------------->
+
+
+
+
+    <h3>9. Hide and Show HTML Elements with CSS</h3>
+    <div class="hidden_element">This is hidden</div>
+    <div class="visible_element">This is visible</div>
+    <div class="transparent_element">This is transparent</div>
+
+
+
+
+
+
+    <br><br><br>
+    <hr> <br><br>
+    <!--------------------------------------------------------------------------->
+
+
+
+    <h3>10. Positioning HTML Elements using CSS</h3>
+    <div id="position_box">
+        <div class="relative">Relative</div>
+        <div class="absolute">Absolute</div>
+        <div class="fixed">Fixed</div>
+        <div class="sticky">Sticky</div>
+    </div>
+
+
+
+
+
+
+    <br><br><br>
+    <hr> <br><br>
+    <!--------------------------------------------------------------------------->
+
+
+
+
+    <h3>11. Customize CSS Selectors with Pseudo Classes</h3>
+    <button id="button_psudo">Click Me</button>
+    <input type="text" placeholder="Focus on me">
+    <ul>
+        <li>List Item 1</li>
+        <li>List Item 2</li>
+        <li>List Item 3</li>
+    </ul>
+    <a href="#">This is a link</a>
+
+
+
+
+
+
+    <br><br><br>
+    <hr> <br><br>
+    <!--------------------------------------------------------------------------->
+
+
+
+
+    <h3>12. Use CSS Media Queries to Dynamically Apply Styles</h3>
+    <div class="responsive_box">Responsive Box</div>
+
+
+
+
+
+
+    <br><br><br>
+    <hr> <br><br>
+    <!--------------------------------------------------------------------------->
+
+
+
+    <h3>13. Style a Logo and Navigation on a Website with CSS</h3>
+
+    <!-- styling logo -->
+    <div class="header_logo">
+        <img src="x logo.png" alt="Logo" class="logo">
+    </div>
+
+    <!-- Styling nav menu -->
+    <ul class="nav_menu">
+        <!-- Using unordered list <ul> -->
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
+
+
+
+
+
+
+
+
+
+    <br><br><br>
+    <hr> <br><br>
+    <!--------------------------------------------------------------------------->
+
+
+
+
+    <h3>14. Create Dynamic Styles with CSS Variables</h3>
+    <div id="dynamic_css">this text has dynamic style applied</div>
+
+    <!-- CSS variables can be manipulated with JavaScript for dynamic styling. -->
+    <script>
+        document.documentElement.style.setProperty('--main-color', 'red');
+        // the color red has higher priority than in CSS which is blue
+
+    </script>
+
+</body>
+
+
+
+</html>

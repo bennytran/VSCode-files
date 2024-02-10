@@ -1,0 +1,79 @@
+/*1. Using flex-direction to layout content horizontally and vertically */
+.flex_direction {
+    display: flex;
+    flex-direction: row;
+    /* row-reverse, column, column-reverse */
+}
+
+
+
+/* ---------------------------------------------------------------------------- */
+
+
+
+/*2. Using order to rearrange flexbox children */
+
+.flex_children_order {
+    display: flex;
+}
+
+.item {
+    /* Styling for the flex items */
+}
+
+
+
+/* ---------------------------------------------------------------------------- */
+
+
+
+
+/* 3. Demystifying alignment in flexbox children */
+
+
+
+/* ---------------------------------------------------------------------------- */
+
+
+
+
+/* 4. Defining dimensions on flexbox children using flex-basis */
+
+
+
+
+/* ---------------------------------------------------------------------------- */
+
+
+
+
+/* 5. Using flex-shrink and flex-grow to make flexbox children resize correctly */
+
+
+
+/* ---------------------------------------------------------------------------- */
+
+
+
+
+/* 6. Combining the flexbox sizing properties using the flex shorthand */
+
+
+
+/* ---------------------------------------------------------------------------- */
+
+
+
+
+/* 7. Turning a flexbox into a grid using flex-wrap and align-content */
+
+
+
+
+/* ---------------------------------------------------------------------------- */
+
+
+
+
+
+/* 8. Using Flexbox in Websites and Applications */
