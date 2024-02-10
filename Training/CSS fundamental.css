@@ -1,0 +1,515 @@
+/* 1.Set CSS properties and Values (syntax) */
+#color {
+    color: red;
+    font-size: 16px;
+}
+
+#background_color {
+    background-color: rgb(187, 150, 220);
+}
+
+#font_family {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#text_align {
+    text-align: center;
+}
+
+#box_model_property {
+    /* Adds 50 pixels of space outside the border of the element on all sides. */
+    margin: 10px;
+
+    /* Adds 30 pixels of space inside the border of the element on all sides, between the border and the content. */
+    padding: 110px;
+
+    /* Creates a solid border around the element. The default width is medium and the color is current color if not specified. */
+    border: solid;
+
+    /* Sets the width of the element's content area to 20 pixels. Does not include padding, border, or margin. */
+    width: 20px;
+
+    /* Sets the height of the element's content area to 20 pixels. Does not include padding, border, or margin. */
+    height: 20px;
+
+}
+
+#position_property {
+    border: solid;
+    position: absolute;
+    left: 100px;
+    right: 100px;
+}
+
+/* Note for positions */
+/* 
+Default positioning; the element is positioned according 
+to the normal flow of the document.
+.static {
+    position: static;
+}
+
+Positioned relative to its normal position. 
+use top, right, bottom, left properties to move it.
+.relative {
+    position: relative;
+    top: 10px;  Moves down 10px from its normal position
+    left: 20px; Moves right 20px from its normal position 
+}
+
+
+Removed from the normal document flow. 
+Positioned relative to its nearest positioned ancestor (not static).
+.absolute {
+    position: absolute;
+    top: 30px;  Distance from the top edge of the nearest positioned ancestor
+    right: 40px; Distance from the right edge of the nearest positioned ancestor 
+}
+ 
+
+Positioned relative to the viewport, 
+which means it always stays in the same place even if the page is scrolled.
+.fixed {
+    position: fixed;
+    bottom: 50px; Distance from the bottom of the viewport 
+    left: 60px;   Distance from the left of the viewport 
+}
+
+
+A hybrid of relative and fixed positioning. 
+The element is treated as relative positioned until it crosses a specified point, then it becomes fixed.
+.sticky {
+    position: sticky;
+    top: 0;  The distance from the top at which the sticky effect is triggered 
+}
+
+*remember: for absolute and sticky positioning, the behavior depends on the positioning of ancestor elements. 
+For absolute, the element is positioned relative to its nearest positioned ancestor. For sticky, it acts like relative until it crosses a threshold (like top: 0), then it acts like fixed.
+*/
+
+
+
+/* ---------------------------------------------------------------------------- */
+
+
+
+/* 2. Use Selectors to Style HTML Elements  */
+p {
+    color: blue;
+}
+
+.alert {
+    color: red;
+}
+
+#header {
+    background-color: gray;
+}
+
+input[type="text"] {
+    background-color: yellow;
+}
+
+a:hover {
+    color: red;
+}
+
+div.alert {
+    font-weight: bold;
+}
+
+
+
+
+/* ---------------------------------------------------------------------------- */
+
+
+
+
+
+/* 3. Specificity Hierarchy */
+/* Inline styles > ID selectors > Class selectors > Attribute selectors/pseudo classes > Type selectors */
+#header {
+    color: blue;
+}
+
+.main {
+    color: red;
+}
+
+p {
+    color: green;
+}
+
+.highlight {
+    color: yellow;
+}
+
+
+
+
+/* ---------------------------------------------------------------------------- */
+
+
+
+
+/* 4. Style Elements Using the Cascade */
+p {
+    color: green;
+}
+
+.text {
+    color: blue;
+}
+
+#content {
+    color: red;
+}
+
+.text {
+    color: yellow;
+}
+
+/* This will take precedence over the blue color for 'text' class due to source order */
+
+
+
+/* ---------------------------------------------------------------------------- */
+
+
+
+
+
+/* 5. Understand CSS Layout with the Box Model */
+.box {
+    border: solid;
+    width: 100px;
+    height: 50px;
+    margin: 10px;
+    padding: 10px;
+}
+
+/* 
+Content: The actual content of the box, where text and images appear.
+Border: Surrounds the content and padding.
+Width: Width of the box
+Height: Height of the box
+Padding: The space between the content and the border.
+Margin: The outermost layer, the space between the box and other elements.
+ */
+
+
+
+/* ---------------------------------------------------------------------------- */
+
+
+
+
+
+/*6. Control HTML Elements with Different CSS Units  */
+.container_unit {
+    width: 50%;
+    border: solid;
+}
+
+.unit {
+    font-size: 2vw;
+    /* Viewport Width */
+    margin: 1em;
+}
+
+/*
+Absolute Units: 
+Pixel (px): most common unit for screen-based design
+Points (pt), Inches (in), Centimeters (cm), etc.: Typically used for print media.
+
+Relative Units:
+Percentages (%): Relative to the parent element. Great for responsive design.
+Viewport Width (vw) and Height (vh): Relative to the size of the user's viewport.
+Ems (em) and Rems (rem): Relative to font size. 'em' is relative to the font size of the element, 'rem' is relative to the root element.
+*/
+
+
+
+
+/* ---------------------------------------------------------------------------- */
+
+
+
+
+/*7. Manipulate Colors with CSS  */
+
+.hex {
+    background-color: #ff0000;
+}
+
+.rgb {
+    background-color: rgb(255, 0, 0);
+}
+
+.hsl {
+    background-color: hsl(0, 100%, 50%);
+}
+
+
+
+
+/* ---------------------------------------------------------------------------- */
+
+
+
+
+/*8. Add Backgrounds to HTML Elements  */
+.background_example {
+    background-color: lightblue;
+    background-image: url('neon\ frame.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 300px;
+    height: 200px;
+}
+
+/* 
+background-color: blue; - sets a blue background color.
+background-image: url('image.jpg'); - sets an image as the background.
+background-repeat: no-repeat; - ensures the image doesn't tile.
+background-position: center; - centers the background image.
+background-size: cover; - scales the image to cover the entire element.
+*/
+
+
+
+
+/* ---------------------------------------------------------------------------- */
+
+
+
+
+/* 9. Hide and Show HTML Elements with CSS */
+.hidden_element {
+    display: none;
+}
+
+.visible_element {
+    visibility: visible;
+}
+
+.transparent_element {
+    opacity: 0;
+    /* 1 for visible*/
+}
+
+/* 
+display: none; completely hides an element (it takes no space in layout).
+display: block; or other values like inline, inline-block to make an element visible.
+
+visibility: hidden; hides an element but it still takes up space in the layout.
+visibility: visible; to make an element visible.
+
+opacity: 0; makes an element fully transparent but still interactive and takes up space.
+opacity: 1; for full visibility.
+*/
+
+
+
+
+/* ---------------------------------------------------------------------------- */
+
+
+
+
+/* 10. Positioning HTML Elements using CSS */
+#position_box {
+    border: solid;
+    position: relative;
+    /* fixed | absolute | relative | static | sticky */
+    height: 200px;
+
+}
+
+.relative {
+    position: relative;
+    top: 10px;
+    left: 20px;
+}
+
+.absolute {
+    position: absolute;
+    bottom: 30px;
+    right: 40px;
+}
+
+.fixed {
+    position: fixed;
+    /* Position relative to the viewport, not the parent */
+    left: 50px;
+    top: 0;
+    left: 0;
+}
+
+.sticky {
+    position: sticky;
+    top: 10px;
+}
+
+
+
+/* ---------------------------------------------------------------------------- */
+
+
+
+
+
+/* 11. Customize CSS Selectors with Pseudo Classes */
+#button_psudo:hover {
+    background-color: red;
+}
+
+/*highlights input fields with a blue border when focused. */
+input:focus {
+    border-color: blue;
+}
+
+li:first-child {
+    font-weight: bold;
+}
+
+/* styles odd list items with a gray background. */
+li:nth-child(odd) {
+    background-color: lightgray;
+}
+
+/*  styles unvisited and visited links differently. */
+a:link {
+    color: blue;
+}
+
+a:visited {
+    color: purple;
+}
+
+/* 
+:hover: Styles an element when a user hovers over it.
+:focus: Styles the element that has focus.
+:active: Styles the active element, like a button when it's being clicked.
+:first-child / :last-child: Styles the first or last child element of a parent.
+:nth-child(): Styles elements based on their position in a group.
+Explain the link-related pseudo-classes: :link, :visited.
+*/
+
+
+
+/* ---------------------------------------------------------------------------- */
+
+
+
+
+
+/* 12. Use CSS Media Queries to Dynamically Apply Styles */
+.responsive_box {
+    background-color: blue;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* techniques that apply styles based on the conditions of the device (like screen width, height, orientation). */
+@media (max-width: 600px) {
+    .responsive_box {
+        background-color: green;
+    }
+}
+
+@media (max-width: 400px) {
+    .responsive_box {
+        background-color: red;
+    }
+}
+
+/* 
+@media screen and (min-width: 600px) { ... } - applies styles for screens wider than 600px.
+
+Common use case:
+Responsive Layouts: Adjusting layout based on screen size.
+Typography: Changing font sizes for readability on different devices.
+Visibility: Hiding/showing elements in different contexts.
+
+Media Query Types:
+Width and Height: min-width, max-width, min-height, max-height.
+
+Orientation: 
+landscape or portrait. @media (orientation: portrait)
+*/
+
+
+
+
+
+/* ---------------------------------------------------------------------------- */
+
+
+
+
+/* 13. Style a Logo and Navigation on a Website with CSS */
+
+.logo {
+    width: 50px;
+    height: auto;
+    margin-left: 50%;
+}
+
+/* 
+Placement and size: position, width and height
+Image or text: using <img> tag or text(style, font and size)
+*/
+
+.nav_menu {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+}
+
+.nav_menu a {
+    text-decoration: none;
+    color: black;
+    /* default color*/
+}
+
+.nav_menu a:hover {
+    color: blue;
+    /*on hover color*/
+}
+
+/* 
+Responsive Design: make the nav responsive, by using media querries or hamburger menu for smaller screen
+Styling Active Page Link: show how to style the link of the page that user is currently on using class like .active 
+Adding Icons or Dropdowns: more visual and user friendly
+*/
+
+
+
+/* ---------------------------------------------------------------------------- */
+
+
+
+/*14. Create Dynamic Styles with CSS Variables  */
+
+/* declare CSS variables using -- prefix
+    define variable globally in the :root selector for site-wide access
+*/
+:root {
+    --main-color: blue;
+    --secondary-color: green;
+}
+
+#dynamic_css {
+    background-color: var(--main-color);
+    color: var(--secondary-color);
+}
+
+/* 
+Maintainability: Change a variable in one place to update all references.
+Flexibility: Easier to create themes and adapt styles dynamically.
+Readability: Descriptive variable names make stylesheets easier to understand.
+*/
