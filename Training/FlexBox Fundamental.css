@@ -14,12 +14,29 @@
 /*2. Using order to rearrange flexbox children */
 
 .flex_children_order {
+    /* make a flex container and its children flex */
     display: flex;
 }
 
-.item {
-    /* Styling for the flex items */
+.flex_item {
+    padding: 10px;
+    border: solid;
+    margin: 5px;
 }
+
+/* Rearrange using the order property */
+.flex_item:nth-child(1) {
+    order: 2;
+}
+
+.flex_item:nth-child(2) {
+    order: 1;
+}
+
+.flex_item:nth-child(3) {
+    order: 3;
+}
+
 
 
 
