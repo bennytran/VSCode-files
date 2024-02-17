@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React 1</title>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+    <script type="text/javascript">
+        // add a div inside a div
+        // get the div id
+        // const rootElement = document.getElementById('root')
+        //create element (div, a, img)
+        // const element = document.createElement('div')
+        // add class name for new div
+        // element.className = 'container'
+        // add text for new div
+        // element.textContent = 'Hello World'
+        // append element (child) in div that has id = root
+        // rootElement.appendChild(element)
+
+        const bodyTag = document.getElementsByTagName('body')
+        const element2 = document.createElement('div')
+        element2.className = 'box'
+        element2.textContent = 'I am a box'
+        bodyTag[0].appendChild(element2)
+
+
+        // create div using react
+        // const rootElement = document.getElementById('root')
+        // const element = React.createElement('div', {
+        //     className: 'container',
+        //     // children: ['Hello World', 'Goody'],
+        //     //children: React.createElement('span', null, 'Hello', 'World'),
+        // }, 'Hello World', 'Goody')
+        // ReactDOM.render(element, rootElement)
+
+
+
+
+    </script>
+
+
+    <script type="text/babel">
+        const rootElement = document.getElementById('root')
+        const element = <div className="container">Hello World</div>
+        const another_element = <div className="container2">Another Hello World</div>
+        // ReactDOM.render(element, rootElement)
+        // Do this if want to combine 2 divs 
+        const parentElement = <div>{element} {another_element}</div>
+        ReactDOM.render(parentElement, rootElement)
+    </script>
+
+</body>
+
+</html>

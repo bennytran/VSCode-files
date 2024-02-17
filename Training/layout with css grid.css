@@ -1,0 +1,501 @@
+/*1. Define Root Colors Variables and Set up Box-Sizing for a CSS Layout */
+
+
+/* anything in this html will inherit border-box */
+/* *,
+*::before,
+*::after {
+    box-sizing: inherit;
+} */
+
+
+
+.border_box_container {}
+
+.middle_box {
+    width: 500px;
+    height: 50px;
+    background-color: lightsalmon;
+}
+
+.content_box {
+    width: 500px;
+    background-color: lightblue;
+    padding: 20px;
+    border: solid 5px;
+}
+
+.border_box {
+    width: 500px;
+    background-color: lightgreen;
+    box-sizing: border-box;
+    border: 5px solid;
+    padding: 20px;
+}
+
+
+/* ---------------------------------------------------------------------------- */
+
+
+
+/*2. Introduction to CSS Grid Rows and Columns with display: grid*/
+
+.flex_children_order {
+    /* make a flex container and its children flex */
+    display: flex;
+}
+
+.flex_item {
+    padding: 10px;
+    border: solid;
+    margin: 5px;
+}
+
+/* Rearrange using the order property */
+.flex_item:nth-child(1) {
+    order: 2;
+}
+
+.flex_item:nth-child(2) {
+    order: 1;
+}
+
+.flex_item:nth-child(3) {
+    order: 3;
+}
+
+
+
+
+/* ---------------------------------------------------------------------------- */
+
+
+
+
+/* 3. Specify a Gutter in CSS Grid with gap (grid-gap) */
+
+
+
+
+
+
+
+
+
+
+
+/* ---------------------------------------------------------------------------- */
+
+
+
+
+/* 4. Utilize Firefox Developer Tools to Visualize CSS Grid Styles */
+
+.flex_container1 {
+    display: flex;
+}
+
+.flex_item1 {
+    flex-basis: 100px;
+    border: 1px solid black;
+    padding: 10px;
+    margin: 10px;
+}
+
+
+
+/* ---------------------------------------------------------------------------- */
+
+
+
+
+/* 5. Determine CSS Grid Sizing with the Fraction Unit (fr) */
+.grid_template_area {
+    width: 90%;
+    margin: auto;
+    display: grid;
+    /* repeat the columns */
+    /* grid-template-columns: 1fr 2fr 1fr; */
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 200px 400px 400px 200px;
+    /* grid-template-columns: 100px 1fr 50%; */
+    grid-gap: 20px;
+    text-align: center;
+
+    grid-template-areas:
+
+        'h h h h'
+        'm m m a'
+        'm m m s'
+        'f f f f'
+
+    ;
+}
+
+.grid_template_header {
+    grid-area: h;
+}
+
+.grid_template_main {
+    grid-area: m;
+}
+
+.grid_template_aside {
+    grid-area: a;
+}
+
+.grid_template_section {
+    grid-area: s;
+}
+
+.grid_template_footer {
+    grid-area: f;
+}
+
+
+/* ---------------------------------------------------------------------------- */
+
+
+
+
+/* 6. Define a Page Layout with CSS Grid Using grid-template-areas */
+
+.flexbox_combine {
+    display: flex;
+    background-color: lightgrey;
+    padding: 10px;
+}
+
+.flex_item3 {
+    flex-basis: 100px;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid black;
+    background-color: white;
+}
+
+#item_grow1 {
+    flex-grow: 1;
+    flex-shrink: 0;
+}
+
+#item_basis {
+    flex-shrink: 0;
+    flex-basis: 200px;
+}
+
+#item_shrink1 {
+    /* flex-shrink: 1; this value is set at default, even without having to declare shrink: 1*/
+
+}
+
+/* ---------------------------------------------------------------------------- */
+
+
+
+
+/* 7. Align Content by Adding Styling to a CSS Grid Layout */
+
+.flexbox_wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 10px;
+    text-align: center;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.column {
+    flex: 1;
+    background-color: lightgray;
+    padding: 10px;
+
+
+}
+
+.column_two_third {
+    flex: 2;
+    background-color: lightgray;
+    padding: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+    .row {
+        flex-wrap: wrap;
+    }
+
+    .column {
+        flex-basis: 100%;
+    }
+}
+
+
+
+/* ---------------------------------------------------------------------------- */
+
+
+
+
+/* 8. Build a Navigation Bar with CSS Grid Using grid-auto-flow */
+
+
+.navigation_bar {
+    display: grid;
+    gap: 10px;
+    width: 90%;
+    margin: auto;
+    text-align: center;
+}
+
+.nav_row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.nav_item {
+    flex: 1;
+    border: solid 1px;
+    background-color: lightcyan;
+    padding: 5px;
+}
+
+
+
+
+@media only screen and (max-width: 768px) {
+    .nav_row {
+        flex-wrap: wrap;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .nav_item {
+        flex-basis: 50%;
+        /* prevent item from growing */
+        flex-grow: 0;
+
+    }
+}
+
+
+
+/* ---------------------------------------------------------------------------- */
+
+
+
+
+/* 9. Create a Nested CSS Grid Layout */
+
+.outer_grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    border: solid;
+}
+
+.nested_grid {
+    display: grid;
+    /* 11. Define Size Range with the minmax() CSS Function to Create Responsive Grid Items */
+    grid-template-columns: repeat(2, minmax(100px, 1fr));
+    /* this creates 3 columns, ea with a min width of 100px
+    and max of 1 fraction of avail space */
+
+}
+
+
+
+
+/* ---------------------------------------------------------------------------- */
+
+
+
+
+
+/* 10. Use the repeat() CSS Function to Efficiently Define CSS Grid Rows and Columns */
+
+.flexbox_wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 10px;
+    text-align: center;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.column {
+    flex: 1;
+    background-color: lightgray;
+    padding: 10px;
+
+
+}
+
+.column_two_third {
+    flex: 2;
+    background-color: lightgray;
+    padding: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+    .row {
+        flex-wrap: wrap;
+    }
+
+    .column {
+        flex-basis: 100%;
+    }
+}
+
+
+
+/* ---------------------------------------------------------------------------- */
+
+
+
+
+/* 11. Define Size Range with the minmax() CSS Function to Create Responsive Grid Items */
+
+.flexbox_wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 10px;
+    text-align: center;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.column {
+    flex: 1;
+    background-color: lightgray;
+    padding: 10px;
+
+
+}
+
+.column_two_third {
+    flex: 2;
+    background-color: lightgray;
+    padding: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+    .row {
+        flex-wrap: wrap;
+    }
+
+    .column {
+        flex-basis: 100%;
+    }
+}
+
+
+
+/* ---------------------------------------------------------------------------- */
+
+
+
+
+
+/* 12. Create a Responsive Layout Using Media Queries with CSS Grid */
+
+.flexbox_wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 10px;
+    text-align: center;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.column {
+    flex: 1;
+    background-color: lightgray;
+    padding: 10px;
+
+
+}
+
+.column_two_third {
+    flex: 2;
+    background-color: lightgray;
+    padding: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+    .row {
+        flex-wrap: wrap;
+    }
+
+    .column {
+        flex-basis: 100%;
+    }
+}
+
+
+
+/* ---------------------------------------------------------------------------- */
+
+
+
+
+
+
+/* 13. Use grid-auto-flow and Media Queries to Flip Navigation from Horizontal to Vertical */
+
+.flexbox_wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 10px;
+    text-align: center;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.column {
+    flex: 1;
+    background-color: lightgray;
+    padding: 10px;
+
+
+}
+
+.column_two_third {
+    flex: 2;
+    background-color: lightgray;
+    padding: 10px;
+}
+
+@media only screen and (max-width: 768px) {
+    .row {
+        flex-wrap: wrap;
+    }
+
+    .column {
+        flex-basis: 100%;
+    }
+}
+
+
+
+/* ---------------------------------------------------------------------------- */
