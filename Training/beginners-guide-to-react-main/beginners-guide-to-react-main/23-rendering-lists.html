@@ -5,10 +5,10 @@
   <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
   <script type="text/babel">
     const allItems = [
-      {id: 'a', value: 'apple'},
-      {id: 'o', value: 'orange'},
-      {id: 'g', value: 'grape'},
-      {id: 'p', value: 'pear'},
+      { id: 'a', value: 'apple' },
+      { id: 'o', value: 'orange' },
+      { id: 'g', value: 'grape' },
+      { id: 'p', value: 'pear' },
     ]
 
     function App() {
@@ -27,7 +27,7 @@
           <button disabled={items.length >= allItems.length} onClick={addItem}>
             add item
           </button>
-          <ul style={{listStyle: 'none', paddingLeft: 0}}>
+          <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
             {items.map(item => (
               <li>
                 <button onClick={() => removeItem(item)}>remove</button>{' '}
@@ -46,10 +46,10 @@
   <script type="text/babel">
     function FocusDemo() {
       const [items, setItems] = React.useState([
-        {id: 'a', value: 'apple'},
-        {id: 'o', value: 'orange'},
-        {id: 'g', value: 'grape'},
-        {id: 'p', value: 'pear'},
+        { id: 'a', value: 'apple' },
+        { id: 'o', value: 'orange' },
+        { id: 'g', value: 'grape' },
+        { id: 'p', value: 'pear' },
       ])
 
       React.useEffect(() => {

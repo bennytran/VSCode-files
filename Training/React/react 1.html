@@ -5,6 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>React 1</title>
+
+    <style>
+        .box {
+            border: 1px solid black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .box--large {
+            width: 270px;
+            height: 270px;
+        }
+
+        .box--medium {
+            width: 180px;
+            height: 180px;
+        }
+
+        .box--small {
+            width: 90px;
+            height: 90px;
+        }
+    </style>
 </head>
 
 <body>
@@ -12,6 +37,9 @@
     <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+    <script src="https://unpkg.com/prop-types@15.6.1/prop-types.js"></script>
+    <script src="https://unpkg.com/react-error-boundary@1.2.5/dist/umd/react-error-boundary.js"></script>
+
     <script type="text/javascript">
         // add a div inside a div
         // get the div id
@@ -25,11 +53,11 @@
         // append element (child) in div that has id = root
         // rootElement.appendChild(element)
 
-        const bodyTag = document.getElementsByTagName('body')
-        const element2 = document.createElement('div')
-        element2.className = 'box'
-        element2.textContent = 'I am a box'
-        bodyTag[0].appendChild(element2)
+        // const bodyTag = document.getElementsByTagName('body')
+        // const element2 = document.createElement('div')
+        // element2.className = 'box'
+        // element2.textContent = 'I am a box'
+        // bodyTag[0].appendChild(element2)
 
 
         // create div using react
@@ -48,14 +76,710 @@
 
 
     <script type="text/babel">
-        const rootElement = document.getElementById('root')
-        const element = <div className="container">Hello World</div>
-        const another_element = <div className="container2">Another Hello World</div>
-        // ReactDOM.render(element, rootElement)
-        // Do this if want to combine 2 divs 
-        const parentElement = <div>{element} {another_element}</div>
-        ReactDOM.render(parentElement, rootElement)
+        // const rootElement = document.getElementById('root')
+        // const element = <div className="container">Hello World</div>
+        // const another_element = <div className="container2">Another Hello World</div>
+        // // ReactDOM.render(element, rootElement)
+        // // Do this if want to combine 2 divs
+        // const parentElement = <div>{element} {another_element}</div>
+
+
+        //Custom component
+        // function Message({ children }) {
+        //     return <div className="message">{children}</div>
+        // }
+
+        // const element = <div className="container">
+        //     <Message>Hello World</Message>
+        //     <Message>Goody</Message>
+        // </div>
+
+
+        //PropTypes
+        // const rootElement = document.getElementById('root')
+
+        // function SayHello({ firstName, lastName }) {
+        //     return (
+        //         <div>
+        //             Hello {firstName} {lastName}!
+        //         </div>
+        //     )
+        // }
+
+        // //to ensure constraint works, use dev instead of production when importing proptypes
+        // SayHello.propTypes = {
+        //     firstName: PropTypes.string.isRequired,
+        //     lastName: PropTypes.string.isRequired,
+        // }
+
+        // const element = <SayHello firstName={false} lastName="doe" />
+
+
+        //Interpolation
+        //note:
+        //{'the text "${text}" has '}(with single quotes) will display as it is, without interpreting ${text} as a variable.
+        //{`the text "${text}" has `}(with backticks) will substitute ${text} with the actual value of the text variable.
+        function CharCount({ text }) {
+            return (
+                <div>
+                    {`the text "${text}" has `}
+                    <strong>{text.length ? text.length : 'no'} </strong>
+                    {'characters'}
+                </div>
+            )
+        }
+
+        // const element = (
+        //     <>
+        //         <CharCount text="Hello World" />
+        //         <CharCount text="" />
+        //     </>
+        // )
+
+        // React render interval
+        // function Clock() {
+        //     const time = new Date().toLocaleTimeString()
+        //     const element = (
+        //         <div className="clock">
+        //             <textBox>It is {time}</textBox>
+        //             <input readOnly value={time} />
+        //         </div>
+        //     )
+        //     ReactDOM.render(element, document.getElementById('root'))
+        // }
+        // Clock()
+        // setInterval(Clock, 1000)
+        // setInterval(() => {
+        //     Clock()
+
+        // }, 1000);
+
+        // ReactDOM.render(element, document.getElementById('root'))
+        //BIG NOTE: when naming react fucntion, uppercase first letter
+
+
+
+
     </script>
+
+
+
+    <!-- REUSABLE STYLING -->
+
+
+    <script type="text/babel">
+        // ...rest means any other props
+        // function Box({ size, className = '', style, ...rest }) {
+        //     const sizeClassName = size ? `box--${size}` : ''
+        //     return (
+        //         <div
+        //             className={`box ${sizeClassName} ${className}`}
+        //             style={{ fontStyle: 'italic', ...style }}
+        //             {...rest}
+        //         />
+        //     )
+        // }
+
+
+        // const element = (
+        //     <div>
+        //         <Box size="small" style={{ backgroundColor: 'lightBlue' }}>
+        //             Box 1
+        //         </Box>
+        //         <Box size="medium" style={{ backgroundColor: 'lightGreen' }}>
+        //             Box 2
+        //         </Box>
+        //         <Box size="large" style={{ backgroundColor: 'lightPink' }}>
+        //             Box 3
+        //         </Box>
+        //         <Box>sizeless box</Box>
+        //     </div>
+        // )
+        // ReactDOM.render(element, document.getElementById('root'))
+
+
+        // EVENT HANDLER
+        // create app that shows a button and return count for every click, and an input
+        // box that returns text in a textbox  
+
+
+
+    </script>
+
+
+
+
+    <!-- EVENT HANDLER  -->
+
+    <script type="text/babel">
+        // create app that shows a button and return count for every click, and an input
+        // box that returns text in a textbox
+        // event state that responsible for event
+
+        // const state = { clickCount: 0, userName: '' }
+        // function App() {
+        //     function ClickHandler() {
+        //         setState({ clickCount: state.clickCount + 1 })
+        //     }
+
+        //     function InputHandler() {
+        //         setState({ userName: event.target.value })
+        //     }
+
+
+        //     return (
+        //         <div>
+        //             <p>Click count: {state.clickCount} </p>
+        //             <button onClick={ClickHandler}>Click me </button>
+
+        //             <p>Input: {state.userName}  </p>
+        //             <input type="text" placeholder="text here" onChange={InputHandler} />
+        //         </div>
+
+        //     )
+
+        //     function setState(newState) {
+        //         Object.assign(state, newState)
+        //         renderApp()
+        //     }
+
+        // }
+        // function renderApp() {
+        //     ReactDOM.render(<App />, document.getElementById('root'))
+        // }
+
+        // renderApp()
+
+    </script>
+
+
+    <!-- STATE -->
+    <script type="text/babel">
+        // NOTE: const [stateValue, setStateValue] = useState(initialValue);
+        // handler function
+        // form (label, input, condition btween name and empty)
+        //render to screen
+
+        // function Greeting() {
+        //     const [name, setName] = React.useState('')
+        //     const InputHandler = event => setName(event.target.value)
+
+        //     return (
+        //         <div>
+        //             <form>
+        //                 <label htmlFor="name"> name </label>
+        //                 <input id="name" placeholder="John Doe" onChange={InputHandler} />
+        //                 {name ? <strong>Your name is {name}</strong> : 'Enter your name'}
+
+        //             </form>
+        //         </div>
+        //     )
+        // }
+
+        // ReactDOM.render(<Greeting />, document.getElementById('root'));
+
+    </script>
+
+
+
+
+    <!-- SIDE EFFECT -->
+    <script type="text/babel">
+        // function Greeting() {
+        //     // idea: retrieve(get) item and save item to local storage
+        //     // steps: get item from input-> set to localstorage mem and set value to input field as saved item
+        //     const InputHandler = event => setName(event.target.value)
+        //     const [name, setName] = React.useState(
+        //         window.localStorage.getItem('name') || ''
+        //     )
+
+        //     const setItem = React.useEffect(
+        //         () => window.localStorage.setItem('name', name)
+        //     )
+
+        //     return (
+        //         <div>
+        //             <form>
+        //                 <label htmlFor="name"> name </label>
+        //                 <input id="name" value={name} placeholder="John Doe" onChange={InputHandler} />
+        //                 {name ? <strong>Your name is {name}</strong> : 'Enter your name'}
+
+        //             </form>
+        //         </div>
+        //     )
+        // }
+
+        // ReactDOM.render(<Greeting />, document.getElementById('root'));
+    </script>
+
+    <!-- LAZY INITIALIZATION -->
+    <script type="text/babel">
+        // function Greeting() {
+        //     // idea: retrieve(get) item and save item to local storage
+        //     // steps: get item from input-> set to localstorage mem and set value to input field as saved item
+        //     const InputHandler = event => setName(event.target.value)
+        //     // With arrow func
+        //     const [name, setName] = React.useState(() => {
+        //         console.log('Initializing state with arrow function');
+        //         return window.localStorage.getItem('name') || '';
+        //     }
+        //     );
+
+        //     // Without arrow func
+        //     // console.log('Initializing state directly');
+        //     // const [name, setName] = React.useState(window.localStorage.getItem('name') || '');
+
+        //     console.log('rendered')
+        //     const setItem = React.useEffect(
+        //         () => window.localStorage.setItem('name', name)
+        //     )
+
+        //     return (
+        //         <div>
+        //             <form>
+        //                 <label htmlFor="name"> name </label>
+        //                 <input id="name" value={name} placeholder="John Doe" onChange={InputHandler} />
+        //                 {name ? <strong>Your name is {name}</strong> : 'Enter your name'}
+
+        //             </form>
+        //         </div>
+        //     )
+        // }
+
+        // ReactDOM.render(<Greeting />, document.getElementById('root'));
+    </script>
+
+
+    <!-- USEEFFECT DEPENDENCY -->
+    <script type="text/babel">
+        // idea: retrieve(get) item and save item to local storage
+        // steps: get item from input-> set to localstorage mem and set value to input field as saved item
+        // NOTE: const [stateValue, setStateValue] = useState(initialValue);
+        // function Greeting() {
+
+        //     const [name, setName] = React.useState(() => {
+        //         console.log('Initializing state with arrow function')
+        //         return window.localStorage.getItem("name") || ''
+        //     });
+
+        //     React.useEffect(() => {
+        //         console.log('Greeting useEffect')
+        //         window.localStorage.setItem("name", name)
+        //     }, [name]
+        //         //[name] prevent useEffect from running, only runs when value of name changes
+        //     )
+
+        //     const InputHandler = event => setName(event.target.value);
+
+        //     return (
+        //         <div>
+        //             <form>
+        //                 <label htmlFor="name"> name </label>
+        //                 <input id="name" value={name} placeholder="John Doe" onChange={InputHandler} />
+        //             </form>
+        //             {name ? <strong>Your name is {name}</strong> : 'Enter your name'}
+
+        //             <Click />
+        //         </div>
+        //     )
+        // }
+
+        // function Click() {
+        //     const [count, setCount] = React.useState(() => {
+        //         return parseInt(window.localStorage.getItem("count"), 10) || 0;
+        //     })
+
+
+        //     React.useEffect(() => {
+        //         console.log('Click useEffect')
+        //         window.localStorage.setItem("count", count)
+        //     }, [count]
+        //         //[count] prevent useEffect from running, only runs when value of count changes
+        //     )
+
+        //     const CountIncrement = () => {
+        //         setCount(count + 1)
+        //     }
+        //     const CountReset = () => { setCount(0) }
+        //     return (
+
+        //         <div>
+        //             <button onClick={CountIncrement} >{count}</button>
+        //             <button onClick={CountReset}>Reset</button>
+        //         </div>
+
+        //     )
+
+        // }
+
+
+
+        // ReactDOM.render(<Greeting />, document.getElementById('root'));
+
+
+    </script>
+
+
+
+    <!-- CUSTOM HOOKS -->
+    <script type="text/babel">
+        //      const [name, setName] = React.useState(() => {
+        //         return window.localStorage.getItem('name') || ''
+        //     })
+        //     // useEffect dont need return
+        //     React.useEffect(() => {
+        //         window.localStorage.setItem('name', name)
+        //     }, [name])
+
+        // function useLocalStorageState(key, defaultValue = '') {
+
+        //     const [state, setState] = React.useState(() => {
+        //         return window.localStorage.getItem(key) || defaultValue
+        //     })
+
+        //     React.useEffect(() => {
+        //         window.localStorage.setItem(key, state)
+        //     }, [state, key])
+
+        //     return [state, setState]
+        // }
+        // function Greeting() {
+        //     // idea: retrieve(get) item and save item to local storage
+        //     // steps: get item from input-> set to localstorage mem and set value to input field as saved item
+        //     const InputHandler = event => setName(event.target.value)
+
+        //     const [name, setName] = useLocalStorageState('name')
+        //     return (
+        //         <div>
+        //             <form>
+        //                 <label htmlFor="name"> name </label>
+        //                 <input id="name" value={name} placeholder="John Doe" onChange={InputHandler} />
+        //                 {name ? <strong>Your name is {name}</strong> : 'Enter your name'}
+
+        //             </form>
+        //         </div>
+        //     )
+        // }
+
+        // ReactDOM.render(<Greeting />, document.getElementById('root'));
+    </script>
+
+    <!-- BASIC FORMS -->
+    <script type="text/babel">
+        // function UserNameForm() {
+
+        //     // const usernameInputRef = React.useRef()
+        //     function SubmitHandler(event) {
+        //         event.preventDefault()
+        //         console.log(event.target)
+
+        //         // to show the property of the form element in dev tool
+        //         console.dir(event.target)
+        //         const userName = event.target.elements.usernameInput.value
+
+        //         //The ${userName} is treated as a literal string, not as a placeholder for a variable.
+        //         // so use `` to retrieve value of ${}
+        //         alert(`${userName}  has been added!`)
+        //     }
+
+        //     // htmlFor = "id(actual id value)" used for accessibility
+        //     // and linking with target => now label will be linked with input with the same id
+        //     // include ref={usernameInputRef} in input if want to use ref
+        //     return (
+        //         <form onSubmit={SubmitHandler}>
+        //             <div>
+
+        //                 <label htmlFor="usernameInput">Username: </label>
+        //                 <input id="usernameInput" type="text" placeholder='Joe' />
+        //             </div>
+        //             <button type='submit'>Submit </button>
+        //         </form>
+        //     )
+        // }
+
+        // ReactDOM.render(<UserNameForm />, document.getElementById("root"));
+    </script>
+
+
+    <!-- DYNAMIC FORM -->
+    <script type="text/babel">
+        // Idea: Validate input in realtime (in lower case), and disable submit button until valid
+        // function UserNameForm() {
+        //     const [userName, setUserName] = React.useState('')
+        //     const isLowerCase = userName === userName.toLowerCase()
+        //     const error = isLowerCase ? null : 'User Name must be in lower case'
+
+        //     function SubmitHandler(event) {
+        //         event.preventDefault()
+        //         console.log(event.target)
+        //         console.dir(event.target)
+        //         //The ${userName} is treated as a literal string, not as a placeholder for a variable.
+        //         // so use `` to retrieve value of ${}
+        //         alert(`${userName}  has been added!`)
+
+        //     }
+
+        //     //changeHandler is mentioned in <input>, so the target of ChangeHandler event is
+        //     //input that contain ChangeHandler
+        //     function ChangeHandler(event) {
+        //         setUserName(event.target.value)
+        //     }
+        //     // htmlFor = "id(actual id value)" used for accessibility
+        //     // and linking with target => now label will be linked with input with the same id
+        //     // include ref={usernameInputRef} in input if want to use ref
+        //     return (
+        //         <form onSubmit={SubmitHandler}>
+        //             <div>
+
+        //                 <label htmlFor="usernameInput">Username: </label>
+        //                 <input id="usernameInput" type="text" placeholder='Joe' onChange={ChangeHandler} />
+        //             </div>
+        //             <div style={{ color: 'red' }}>{error}</div>
+        //             <button disabled={!Boolean(isLowerCase)} type='submit'>Submit </button>
+        //         </form>
+        //     )
+        // }
+
+        // ReactDOM.render(<UserNameForm />, document.getElementById("root"));
+
+    </script>
+
+
+    <!-- CONTROLLED FORM -->
+    <script type="text/babel">
+        // Idea: Make it impossible for user to enter Uppercase letter
+        // so no need to display error msg
+        // function UserNameForm() {
+        //     const [userName, setUserName] = React.useState('')
+        //     const isLowerCase = userName === userName.toLowerCase()
+        //     const error = isLowerCase ? null : 'User Name must be in lower case'
+
+        //     function SubmitHandler(event) {
+        //         event.preventDefault()
+        //         console.log(event.target)
+        //         console.dir(event.target)
+        //         //The ${userName} is treated as a literal string, not as a placeholder for a variable.
+        //         // so use `` to retrieve value of ${}
+        //         alert(`${userName}  has been added!`)
+
+        //     }
+
+        //     //changeHandler is mentioned in <input>, so the target of ChangeHandler event is
+        //     //input that contain ChangeHandler
+        //     function ChangeHandler(event) {
+        //         setUserName(event.target.value.toLowerCase())
+        //     }
+        //     // htmlFor = "id(actual id value)" used for accessibility
+        //     // and linking with target => now label will be linked with input with the same id
+        //     // include ref={usernameInputRef} in input if want to use ref
+
+
+        //     //Note for placing value={userName} in input field
+        //     //setUserName(event.target.value.toLowerCase()) will turn input into lowercase
+        //     // for every key stroke (ChangeHandler is called every key stroke) and update
+        //     // userName state
+        //     //=> when add value={userName}, the input field now is controlled by userName state
+        //     //  immeadiately reflect and update whatever is in the current userName state
+        //     //=> input will be now converted to lower case as soon as u type them
+
+        //     // in other words: value={userName} will display what ever in userName state,
+        //     //which instantly changed and update due to ChangeHandler being called for every key stroke
+        //     return (
+        //         <form onSubmit={SubmitHandler}>
+        //             <div>
+
+        //                 <label htmlFor="usernameInput">Username: </label>
+        //                 <input id="usernameInput" type="text" placeholder='Joe' value={userName} onChange={ChangeHandler} />
+        //             </div>
+        //             <div style={{ color: 'red' }}>{error}</div>
+        //             <button disabled={!Boolean(isLowerCase)} type='submit'>Submit </button>
+        //         </form>
+        //     )
+        // }
+
+        // ReactDOM.render(<UserNameForm />, document.getElementById("root"));
+
+
+
+
+    </script>
+
+
+    <!-- ERROR BOUNDARIES -->
+
+    <script type="text/babel">
+        //Steps: get ErrorBoundary from api
+        // ErrorFallBack to display message
+        //throw error
+        // app fucn => explode/set, btn, boundary fallbackcomponenet {explode? </>: push the button}
+        //render
+
+        // const ErrorBoundary = ReactErrorBoundary.ErrorBoundary
+
+        // function ErrorFallBack({ error }) {
+
+        //     return (
+        //         <div>
+        //             <p>Something went wrong</p>
+        //             <p>{error.message}</p>
+        //         </div>
+        //     )
+        // }
+
+        // function Kaboom() {
+        //     throw new Error('💥 CABOOM 💥')
+        // }
+
+        // function App() {
+        //     const [explode, setExplode] = React.useState(false)
+
+        //     return (
+        //         <ErrorBoundary FallbackComponent={ErrorFallBack}>
+        //             <div>
+        //                 <div>
+        //                     <button onClick={() => setExplode(true)}> 💣</button>
+        //                 </div>
+
+        //                 <ErrorBoundary FallbackComponent={ErrorFallBack}>
+        //                     <div>
+        //                         {explode ? <Kaboom /> : 'Push the bomb'}
+        //                     </div>
+        //                 </ErrorBoundary>
+        //             </div>
+        //         </ErrorBoundary>
+        //     )
+        // }
+
+        // ReactDOM.render(<App />, document.getElementById('root'))
+    </script>
+
+
+    <!-- RENDERING LISTS -->
+    <script type="text/babel">
+        //Idea: get used to using key to manipulate items
+        //Item list -> usestate for items -> addItem() -> removeItem() 
+        // return -> 
+        //button -> if item displayed >= all item, onlickc additem
+        //list of item with maping
+        //-> button on eac item to remove
+        //-> label(name) for each item
+        //-> input item value(item name)
+        //render
+        const allItems = [
+            { id: 'a', value: 'apple' },
+            { id: 'o', value: 'orange' },
+            { id: 'p', value: 'pinapple' },
+            { id: 'g', value: 'grape' },
+        ]
+
+        function App() {
+
+            const [items, setItems] = React.useState(allItems)
+            // For each item i in allItems, it checks if i is not included in items.
+            function AddItem() {
+                setItems([...items, allItems.find(i => !items.includes(i))])
+            }
+            // For each item i in items, checks if i is not equal to the item that needs to be removed.
+            function RemoveItem(item) {
+                setItems(items.filter(i => i !== item))
+            }
+            // NOTE for onClick={}: if need to pass argument to fucntion for onclick
+            // need to use arrow fucntion onClick={()=> fucniton(arg)} 
+            // if no argument needed for fucntion in onclick, then onClick={fucntion}
+
+            //include key.id to specify each item id
+            return (
+                <div>
+                    <button disabled={items.length >= allItems.length} onClick={AddItem}>Add Item </button>
+
+                    <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
+                        {items.map(item => (
+                            <li key={item.id}>
+                                <button onClick={() => RemoveItem(item)}>Remove</button>
+                                <label htmlFor={`${item.value}-input`}> {item.value} </label>
+                                <input id={`${item.value}-input`} defaultValue={item.value} />
+
+                            </li>
+                        ))}
+                    </ul>
+
+                </div>
+
+
+            )
+
+        }
+        ReactDOM.render(<App />, document.getElementById('root'))
+
+
+
+
+    </script>
+
+
+    <!-- DEMO FOR KEY -->
+
+    <script type="text/babel">
+        // function FocusDemo() {
+        //     const [items, setItems] = React.useState([
+        //         { id: 'a', value: 'apple' },
+        //         { id: 'o', value: 'orange' },
+        //         { id: 'g', value: 'grape' },
+        //         { id: 'p', value: 'pear' },
+        //     ])
+
+        //     React.useEffect(() => {
+        //         const interval = setInterval(() => {
+        //             setItems(shuffle(items))
+        //         }, 1000)
+        //         return () => clearInterval(interval)
+        //     }, [])
+
+        //     return (
+        //         <div>
+        //             <div>
+        //                 <h1>Without Key</h1>
+        //                 {items.map(item => (
+        //                     <input value={item.value} />
+        //                 ))}
+        //             </div>
+        //             <div>
+        //                 <h1>With Key as Index</h1>
+        //                 {items.map((item, index) => (
+        //                     <input key={index} value={item.value} />
+        //                 ))}
+        //             </div>
+        //             <div>
+        //                 <h1>With Key</h1>
+        //                 {items.map(item => (
+        //                     <input key={item.id} value={item.value} />
+        //                 ))}
+        //             </div>
+        //         </div>
+        //     )
+        // }
+
+        // function shuffle(originalArray) {
+        //     const array = [...originalArray]
+        //     let currentIndex = array.length
+        //     let temporaryValue
+        //     let randomIndex
+        //     // While there remain elements to shuffle...
+        //     while (0 !== currentIndex) {
+        //         // Pick a remaining element...
+        //         randomIndex = Math.floor(Math.random() * currentIndex)
+        //         currentIndex -= 1
+        //         // And swap it with the current element.
+        //         temporaryValue = array[currentIndex]
+        //         array[currentIndex] = array[randomIndex]
+        //         array[randomIndex] = temporaryValue
+        //     }
+        //     return array
+        // }
+        // ReactDOM.render(<FocusDemo />, document.getElementById('root'))
+
+    </script>
+
 
 </body>
 

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todo app</title>
+
+    <style>
+        body {
+            background-color: rgb(117, 81, 175);
+        }
+
+        .app-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 30%;
+            max-width: 600px;
+            margin: 0 auto;
+            gap: 20px;
+            border: solid 1px;
+            /* padding: 20px; */
+            background-color: rgb(21, 1, 65);
+            border-radius: 5px;
+            margin-top: 10%;
+        }
+
+        .input-box,
+        .tasks-box {
+            /* border: 1px solid #ccc; */
+            border-radius: 8px;
+            padding: 20px;
+            width: 70%;
+            display: flex;
+            flex-direction: column;
+            /* Align tasks vertically */
+            justify-content: space-between;
+            color: white;
+
+        }
+
+        .input-group {
+            display: flex;
+            width: 100%;
+            align-items: stretch;
+            background-color: rgb(21, 1, 65);
+            border: 1px solid rgb(117, 81, 175);
+            /* border-radius: 8px; */
+            overflow: hidden;
+        }
+
+        .task-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            /* border: 1px solid #ddd; */
+            border-radius: 5px;
+            color: white;
+            background-color: rgb(117, 81, 175);
+            font-size: 20px;
+        }
+
+        .task-input {
+            flex-grow: 1;
+            padding: 10px;
+            border: none;
+            background-color: transparent;
+            color: white;
+            font-size: 20px;
+        }
+
+        .button.add-button {
+            background-color: rgb(117, 81, 175);
+            color: white;
+            border: none;
+            /* padding: 10px 15px; */
+            padding: 14px 15px;
+            /* border-radius: 5px */
+            flex-shrink: 0;
+            flex-grow: 0;
+        }
+
+        .button.add-button:hover {
+            background-color: #f0f0f0;
+            color: black;
+        }
+
+        .edit-remove-btns {
+            display: flex;
+            gap: 10px;
+        }
+
+        h2 {
+            margin-top: 40px;
+            text-align: center;
+            color: white;
+        }
+
+
+
+        @media screen and (max-width: 1300px) {
+            .input-group {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .task-input {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+
+            .button.add-button {
+                padding: 10px 15px;
+                width: 100%;
+            }
+        }
+    </style>
+
+    </style>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+    <script src="https://unpkg.com/prop-types@15.6.1/prop-types.js"></script>
+    <script src="https://unpkg.com/react-error-boundary@1.2.5/dist/umd/react-error-boundary.js"></script>
+
+
+    <script type="text/babel">
+
+        function TodoApp() {
+            const TaskList = []
+            const savedTasks = JSON.parse(window.localStorage.getItem('tasks'))
+            const [tasks, setTasks] = React.useState(savedTasks || [])
+            const [newTask, setNewTask] = React.useState('')
+
+            const [editId, setEditId] = React.useState(null)
+            const [editValue, setEditValue] = React.useState('')
+
+            //tasks is a set of array so need to convert to string
+            React.useEffect(() => {
+                window.localStorage.setItem('tasks', JSON.stringify(tasks))
+            }, [tasks])
+
+            //ADD TASK
+            function AddTask(event) {
+                event.preventDefault()
+                if (newTask) {
+                    const newTaskObj = { id: Date.now(), value: newTask }
+                    setTasks([...tasks, newTaskObj])
+                    setNewTask('')//reset input field
+                }
+            }
+
+            //REMOVE TASK
+            function RemoveTask(taskToRemove) {
+                setTasks(tasks.filter(task => task.id !== taskToRemove.id))
+            }
+
+
+            //EDDIT TASK
+
+            function StartEdit(task) {
+                setEditId(task.id)
+                setEditValue(task.value)
+            }
+
+            function SaveEdit() {
+                setTasks(tasks.map(task => {
+                    if (task.id === editId) {
+                        return { ...task, value: editValue }
+                    }
+                    return task;
+                }));
+                setEditId(null)
+                setEditValue('')
+            }
+
+
+            function CancelEdit() {
+                setEditId(null);
+                setEditValue('');
+            }
+
+            // setNewTask is called here to handle changes in input field
+            // setTask however update list of tasks, not to handle input
+            function ChangeHandler(event) {
+                setNewTask(event.target.value)
+            }
+            return (
+
+
+                <form onSubmit={AddTask} className="app-container" >
+                    <h2> TODO APP </h2>
+                    <div id="addTask" className="input-box" >
+                        <div className="input-group">
+                            <input
+                                className="task-input"
+                                type="text"
+                                id="taskInput"
+                                placeholder="what is the task today"
+                                value={newTask} //ensure react state always sync with UI
+                                onChange={ChangeHandler}>
+
+                            </input>
+
+                            <button
+                                className="button add-button"
+                                disabled={tasks.length >= 20}
+                                type="submit">
+                                Add Task
+                            </button>
+                        </div>
+                    </div>
+
+                    <div className="tasks-box">
+                        <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
+                            {tasks.map(task => (
+                                <li key={task.id} className="task-item">
+                                    {editId === task.id ? (
+                                        // Edit mode
+                                        <input
+                                            type="text"
+                                            value={editValue}
+                                            onChange={e => setEditValue(e.target.value)}
+                                            style={{ backgroundColor: "rgb(117, 81, 175)", color: "white" }}
+
+                                        />
+                                    ) : (
+                                        // Display mode
+                                        <label>{task.value}</label>
+                                    )}
+                                    <div className="edit-remove-btns">
+                                        {editId === task.id ? (
+                                            <>
+                                                <button style={{ backgroundColor: "rgb(117, 81, 175)", border: "none" }} onClick={SaveEdit}>✔️</button>
+                                                <button style={{ backgroundColor: "rgb(117, 81, 175)", border: "none" }} onClick={CancelEdit}>❌</button>
+                                            </>
+                                        ) : (
+                                            <>
+                                                <button style={{ backgroundColor: "rgb(117, 81, 175)", border: "none" }} onClick={() => StartEdit(task)}>✒️</button>
+                                                <button style={{ backgroundColor: "rgb(117, 81, 175)", border: "none" }} onClick={() => RemoveTask(task)}>🗑️</button>
+                                            </>
+                                        )}
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                </form >
+            )
+        }
+        ReactDOM.render(<TodoApp />, document.getElementById('root'))
+    </script>
+</body>
+
+</html>
