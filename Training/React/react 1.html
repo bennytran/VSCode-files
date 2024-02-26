@@ -657,59 +657,59 @@
     <!-- RENDERING LISTS -->
     <script type="text/babel">
         //Idea: get used to using key to manipulate items
-        //Item list -> usestate for items -> addItem() -> removeItem() 
-        // return -> 
+        //Item list -> usestate for items -> addItem() -> removeItem()
+        // return ->
         //button -> if item displayed >= all item, onlickc additem
         //list of item with maping
         //-> button on eac item to remove
         //-> label(name) for each item
         //-> input item value(item name)
         //render
-        const allItems = [
-            { id: 'a', value: 'apple' },
-            { id: 'o', value: 'orange' },
-            { id: 'p', value: 'pinapple' },
-            { id: 'g', value: 'grape' },
-        ]
+        // const allItems = [
+        //     { id: 'a', value: 'apple' },
+        //     { id: 'o', value: 'orange' },
+        //     { id: 'p', value: 'pinapple' },
+        //     { id: 'g', value: 'grape' },
+        // ]
 
-        function App() {
+        // function App() {
 
-            const [items, setItems] = React.useState(allItems)
-            // For each item i in allItems, it checks if i is not included in items.
-            function AddItem() {
-                setItems([...items, allItems.find(i => !items.includes(i))])
-            }
-            // For each item i in items, checks if i is not equal to the item that needs to be removed.
-            function RemoveItem(item) {
-                setItems(items.filter(i => i !== item))
-            }
-            // NOTE for onClick={}: if need to pass argument to fucntion for onclick
-            // need to use arrow fucntion onClick={()=> fucniton(arg)} 
-            // if no argument needed for fucntion in onclick, then onClick={fucntion}
+        //     const [items, setItems] = React.useState(allItems)
+        //     // For each item i in allItems, it checks if i is not included in items.
+        //     function AddItem() {
+        //         setItems([...items, allItems.find(i => !items.includes(i))])
+        //     }
+        //     // For each item i in items, checks if i is not equal to the item that needs to be removed.
+        //     function RemoveItem(item) {
+        //         setItems(items.filter(i => i !== item))
+        //     }
+        //     // NOTE for onClick={}: if need to pass argument to fucntion for onclick
+        //     // need to use arrow fucntion onClick={()=> fucniton(arg)}
+        //     // if no argument needed for fucntion in onclick, then onClick={fucntion}
 
-            //include key.id to specify each item id
-            return (
-                <div>
-                    <button disabled={items.length >= allItems.length} onClick={AddItem}>Add Item </button>
+        //     //include key.id to specify each item id
+        //     return (
+        //         <div>
+        //             <button disabled={items.length >= allItems.length} onClick={AddItem}>Add Item </button>
 
-                    <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
-                        {items.map(item => (
-                            <li key={item.id}>
-                                <button onClick={() => RemoveItem(item)}>Remove</button>
-                                <label htmlFor={`${item.value}-input`}> {item.value} </label>
-                                <input id={`${item.value}-input`} defaultValue={item.value} />
+        //             <ul style={{ listStyle: 'none', paddingLeft: 0 }}>
+        //                 {items.map(item => (
+        //                     <li key={item.id}>
+        //                         <button onClick={() => RemoveItem(item)}>Remove</button>
+        //                         <label htmlFor={`${item.value}-input`}> {item.value} </label>
+        //                         <input id={`${item.value}-input`} defaultValue={item.value} />
 
-                            </li>
-                        ))}
-                    </ul>
+        //                     </li>
+        //                 ))}
+        //             </ul>
 
-                </div>
+        //         </div>
 
 
-            )
+        //     )
 
-        }
-        ReactDOM.render(<App />, document.getElementById('root'))
+        // }
+        // ReactDOM.render(<App />, document.getElementById('root'))
 
 
 
@@ -780,6 +780,58 @@
 
     </script>
 
+
+    <!-- LIFTING AND COLOCATING -->
+    <script type="text/babel">
+
+
+        // function Name({ name, onNameChange }) {
+        //     return (
+        //         <div>
+        //             <label>Name: </label>
+        //             <input value={name} onChange={onNameChange} />
+        //         </div>
+        //     )
+        // }
+
+        // function FavoriteAnimal({ animal, onAnimalChange }) {
+        //     // const [animal, setAnimal] = React.useState('')  <!--move to App()-->
+        //     return (
+        //         <div>
+        //             <label>Favorite Animal: </label>
+        //             <input
+        //                 value={animal}
+        //                 // onChange={event => setAnimal(event.target.value)} <!--move to App()-->
+        //                 onChange={onAnimalChange}
+        //             />
+        //         </div>
+        //     )
+        // }
+
+        // function Display({ name, animal }) {
+        //     return <div>{`Hey ${name}, your favorite animal is ${animal}!`}</div>
+        // }
+
+        // function App() {
+        //     const [name, setName] = React.useState('')
+        //     const [animal, setAnimal] = React.useState('')
+        //     return (
+        //         <form>
+        //             <Name
+        //                 name={name}
+        //                 onNameChange={event => setName(event.target.value)}
+        //             />
+        //             <FavoriteAnimal
+        //                 animal={animal}
+        //                 onAnimalChange={event => setAnimal(event.target.value)}
+        //             />
+        //             <Display name={name} animal={animal} />
+        //         </form>
+        //     )
+        // }
+
+        // ReactDOM.render(<App />, document.getElementById('root'))
+    </script>
 
 </body>
 
