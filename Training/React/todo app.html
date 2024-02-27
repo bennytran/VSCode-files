@@ -66,6 +66,17 @@
             font-size: 17px;
             flex-grow: 0;
             box-sizing: border-box;
+            overflow: hidden;
+            flex-wrap: wrap;
+        }
+
+        .task-item label {
+            max-width: 70%;
+            /* overflow: hidden; */
+            white-space: normal;
+            flex-grow: 1;
+            flex-basis: 70%;
+            word-wrap: break-word;
         }
 
         .task-input-edit {
