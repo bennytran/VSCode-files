@@ -833,6 +833,368 @@
         // ReactDOM.render(<App />, document.getElementById('root'))
     </script>
 
+
+
+    <!-- REFACTOR WITH REACT HOOK -->
+    <script type="text/babel">
+        // function MyComponent() {
+        //     const [count, setCount] = React.useState(0);
+
+        //     React.useEffect(() => {
+        //         console.log('Component did mount equivalent');
+        //         // This will run on mount and every update. To mimic componentDidMount, can pass an empty dependency array.
+        //     }, []);
+
+        //     const incrementCount = () => {
+        //         setCount(count + 1);
+        //     };
+
+        //     return (
+        //         <div>
+        //             <p>You clicked {count} times</p>
+        //             <button onClick={incrementCount}>
+        //                 Click me
+        //             </button>
+        //         </div>
+        //     );
+        // }
+
+        // ReactDOM.render(<MyComponent />, document.getElementById('root'));
+    </script>
+
+
+    <!-- USEREF HOOK -->
+    <script type="text/babel">
+        // useful when need to compare old and new props or state 
+        //values and want to avoid additional re-renders that would be caused by 
+        //using useState for this purpose.
+        // function MyComponent({ someProp }) {
+        //     const prevProp = React.useRef(someProp); // Initializes the ref with someProp
+
+        //     React.useEffect(() => {
+        //         if (prevProp.current !== someProp) {
+        //             console.log('Prop changed:', prevProp.current, 'to', someProp);
+        //             prevProp.current = someProp; // Updates the ref to the new value
+        //         }
+        //     });
+
+            
+        // }
+
+    </script>
+
+
+    <!-- SETSTATE on MOUNTED REACT COMP -->
+    <script type="text/babel">
+        // function App(){
+        //     const [data, setData] = React.useState(null)
+        //     const isMountedRef = React.useRef(null)
+
+        //     React.useEffect(() =>{
+        //         isMountedRef.curent = true; //setting to true to indicate mounted
+        //         async function fetchData(){ //fectch data asynchronously
+        //             const reposnse= await fetch('https://api.example.com')
+        //             const result = await response.json();
+        //             //after fetching, check if component is mounted again before calling setData
+        //             if(isMountedRef){
+        //                 setData(result)
+        //             }
+        //         }
+
+        //         fetchData();
+
+        //         return()=>{
+        //             // if unmounted, clean up func is called, prevent state updates if comp is 
+        //             // no longer in DOM
+        //             isMountedRef.current= false;
+        //         }
+        //        },[])
+        // }
+
+
+    </script>
+
+    <!-- CUSTOM HOOKS -->
+    <script type="text/babel">
+        // concept: name start with "use", custom hooks can use other built-in hooks (useRef, useState, useEffect)
+        // reusable: reuse logic across different components
+        // return: custom hooks can return anything
+        // function useFetch(url) {
+        //         const [data, setData] = React.useState(null);
+        //         const [isLoading, setIsLoading] = React.useState(false);
+
+        //         React.useEffect(() => {
+        //             setIsLoading(true);
+        //             fetch(url)
+        //                 .then(response => response.json())
+        //                 .then(data => {
+        //                     setData(data);
+        //                     setIsLoading(false);
+        //                 });
+        //         }, [url]);
+
+        //         return { data, isLoading };
+        //     }
+        // function App(){
+        //     const [data, isLoading] = useFetch('https://api.example.com')
+        // }
+    </script>
+
+
+    <!-- EXTRACT GENERIC HOOKS -->
+    <script type="text/babel">
+        // function useFetch(url) {
+        //         const [data, setData] = React.useState(null);
+        //         const [loading, setLoading] = React.useState(true);
+        //         const [error, setError] = React.useState(null);
+
+        //         React.useEffect(() => {
+        //             async function fetchData() {
+        //                 try {
+        //                     const response = await fetch(url);
+        //                     const result = await response.json();
+        //                     setData(result);
+        //                 } catch (err) {
+        //                     setError(err);
+        //                 } finally {
+        //                     setLoading(false);
+        //                 }
+        //             }
+
+        //             fetchData();
+        //         }, [url]);
+
+        //         return { data, loading, error };
+        //     }
+        //     function MyComponent() {
+        //             //useFetch is used as a hook in this function
+        //             const { data, loading, error } = useFetch('https://google.com');
+
+        //             if (loading) return <div>Loading...</div>;
+        //             if (error) return <div>Error: {error.message}</div>;
+
+        //             return (
+        //                 <div>
+        //                     <h1>Data Fetched</h1>
+        //                     <pre>{JSON.stringify(data, null, 2)}</pre>
+        //                 </div>
+        //             );
+        //         }
+                
+    </script>
+
+
+    <!-- USEPREVIOUS HOOK -->
+    <script type="text/babel">
+        //why not passing value to useRef() -> useRef(value)?
+        //--> because that will set initial value of ref.current to value
+        // --> ref.current will remain the same unless manually change it
+        //--> so if to track previous value, useRef() must initally have no value
+        //=> useRef() must be unidentify initially 
+        // useEffect to update ref.current with current value, this update happen after render,
+        //so ref.current will hold the value from previous render
+        // function usePrevious(value) { //takes current value as arguement
+        //         const ref = React.useRef(); //create ref obj, store prev value
+
+        //         React.useEffect(() => {
+        //             ref.current = value;
+        //         });
+
+        //         return ref.current;
+        //     }
+        // function MyComponent({ someProp }) {
+        //         const previousProp = usePrevious(someProp);
+
+        //         React.useEffect(() => {
+        //             if (previousProp !== someProp) {
+        //                 console.log('Prop changed from', previousProp, 'to', someProp);
+        //             }
+        //         }, [someProp]);
+
+                
+        //     }
+   
+
+    </script>
+
+
+    <!-- USECONTEXT -->
+    <script type="text/babel">
+
+        // MyContext.js
+            // import React from 'react';
+
+            // const MyContext = React.createContext(defaultValue);
+
+            // export default MyContext;
+
+        import React, { useState, useContext } from 'react';
+        import MyContext from './MyContext';
+
+            function MyComponent() {
+                // useState for managing state
+                const [count, setCount] = useState(0);
+
+                // useContext for consuming context
+                const contextValue = useContext(MyContext);
+
+                const incrementCount = () => {
+                    setCount(count + 1);
+                };
+
+                return (
+                    <div>
+                        <p>Count: {count}</p>
+                        <p>Context Value: {contextValue}</p>
+                        <button onClick={incrementCount}>Increment</button>
+                    </div>
+                );
+            }
+
+
+
+    </script>
+
+
+    <!-- RENDER PROP COMPONENT -->
+    <script type="text/babel">
+        // function useMousePosition() {
+        //         const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+        //         useEffect(() => {
+        //             const handleMouseMove = (event) => {
+        //                 setMousePosition({
+        //                     x: event.clientX,
+        //                     y: event.clientY
+        //                 });
+        //             };
+
+        //             window.addEventListener('mousemove', handleMouseMove);
+
+                    //this return is a cleanup function #cleanupfunction
+                    //it clean up tasks when components unmount or b4 the effect runs again
+
+                    //when to use:
+                    //--adding event listener
+                    //--subscription: when subscribe to a service
+                    //--timers: when setup timer using setTimeout/ setInterval
+                    //--cancelling API request
+
+                    //when not to use:
+                    //--simple state update
+                    //--onetime effect: effect that runs once and dont require subs and listeners
+
+                    //Best practices:
+                    //=>Only use when effect create somthing that need to clean up
+                //     return () => {
+                //         window.removeEventListener('mousemove', handleMouseMove);
+                //     };
+                // }, []);
+
+                //Dependency array #dependencyarray
+                //--Empty array []: effect runs once after the init render
+                //--with dependency: effect runs when value  in the dependecy array changes
+                //--without array: effect runs after every render
+
+                //in the exmample above, there is no value passed in the array because
+                //1. the purpose of effect is to setup and cleanup event listener
+                //2. the effect runs everytime mouse moves
+
+        //         return mousePosition;
+        //     }
+
+        // function MousePositionDisplay() {
+        //         const { x, y } = useMousePosition();
+
+        //         return (
+        //             <div>
+        //                 <p>Mouse position: {x}, {y}</p>
+        //             </div>
+        //         );
+        //     }
+    
+    </script>
+
+    <!-- COMPONENTDIDMOUNT, COMPONENTWILLUNMOUNT -->
+    <script type="text/babel">
+        // class component for mounting
+        // class ResizeComponent extends React.Component {
+        //         componentDidMount() {
+        //             window.addEventListener('resize', this.handleResize);
+        //         }
+
+        //         componentWillUnmount() {
+        //             window.removeEventListener('resize', this.handleResize);
+        //         }
+
+        //         handleResize = () => {
+        //             //handle resize evt
+        //         };
+
+        //         render() {
+        //             return <div>Resize the window and check the console</div>;
+        //         }
+        //     }
+
+       
+        // refactor to functional component using hooks
+        // when there is a need to perform actions or render UI element based on window size
+        // this function will help doing so
+        //  function ResizeComponent() {
+        //         const [windowSize, setWindowSize] = useState({
+        //             width: window.innerWidth,
+        //             height: window.innerHeight
+        //         });
+
+        //         useEffect(() => {
+        //             const handleResize = () => {
+        //                 setWindowSize({
+        //                     width: window.innerWidth,
+        //                     height: window.innerHeight
+        //                 });
+        //             };
+
+        //             window.addEventListener('resize', handleResize);
+
+        //             return () => {
+        //                 window.removeEventListener('resize', handleResize);
+        //             };
+        //         }, []);
+
+        //         return <div>Window size: {windowSize.width} x {windowSize.height}</div>;
+        //     }
+
+        
+    </script>
+
+    <!-- REACT.LAZY -->
+
+    <script type="text/babel">
+        // assuming heavycomp is in the same directory
+        // const HeavyComponent = React.lazy(() => import('./HeavyComponent'));
+
+        // <Suspense> is used to wrap heavy components
+        //fallback accept any react element and display that while waiting for lazy to load
+        //How it works: app() is rendered --> heavycomp start loading -->fallback is shown -->
+        //when heavy finished loading, it replace the fallback
+        // function App() {
+        //         return (
+        //             <div>
+        //                 <Suspense fallback={<div>Loading...</div>}> 
+        //                     <HeavyComponent />
+        //                 </Suspense>
+        //             </div>
+        //         );
+        //     }
+        
+
+        //NOTE: this can be used to preload next page if user is predicted to move to next page
+        //preloading too much can effect bandwidth and neg impact on current page
+        
+    </script>
+
+
+
 </body>
 
 </html>

@@ -19,14 +19,15 @@
             align-items: center;
             justify-content: center;
             width: 30%;
-            max-width: 600px;
+            /* max-width: 600px; */
             margin: 0 auto;
             gap: 20px;
             border: solid 1px;
             /* padding: 20px; */
             background-color: rgb(21, 1, 65);
             border-radius: 5px;
-            margin-top: 10%;
+            margin-top: 5%;
+            margin-bottom: 10%;
         }
 
         .input-box,
@@ -138,6 +139,54 @@
             color: white;
         }
 
+        .timer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+            padding: 0px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            color: white;
+            background-color: transparent;
+            font-size: 60px;
+            text-align: center;
+            flex-grow: 0;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+
+        .timer-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            gap: 10px;
+            background-color: transparent;
+            /* border: solid 1px white; */
+        }
+
+        .timer-button button {
+            background-color: rgb(117, 81, 175);
+            border: solid white 1px;
+
+        }
+
+
+
+
+
+        .timer-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+
+
 
 
 
@@ -145,6 +194,13 @@
             .input-group {
                 flex-direction: column;
                 align-items: stretch;
+            }
+
+            .task-input,
+            .task-input-edit,
+            .task-item label,
+            .button {
+                font-size: 10px;
             }
 
             .task-input {
@@ -156,6 +212,14 @@
             .button.add-button {
                 padding: 10px 15px;
                 width: 100%;
+            }
+
+            .app-container {
+                width: 100%;
+            }
+
+            .tasks-box {
+                /* width: 100%; */
             }
         }
     </style>
@@ -295,10 +359,130 @@
                         </ul>
                     </div>
 
+
                 </form >
+
             )
         }
-        ReactDOM.render(<TodoApp />, document.getElementById('root'))
+
+        function Timer() {
+            // Idea: to create a cooldown timer that has basic functions: view time, add time, 
+            // minus time, start timer, stop timer, reset timer
+            const [timer, setTimer] = React.useState(() => {
+                return parseInt(window.localStorage.getItem("timer"), 10) || 0; // 30 minutes in seconds as default
+            })
+            const formatTime = (seconds) => {
+                const hours = Math.floor(seconds / 3600);
+                const minutes = Math.floor((seconds % 3600) / 60);
+                const secs = seconds % 60;
+
+                const formattedHours = hours.toString().padStart(2, '0');
+                const formattedMinutes = minutes.toString().padStart(2, '0');
+                const formattedSeconds = secs.toString().padStart(2, '0');
+
+                return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
+            };
+            const [state, setState] = React.useState(false);
+
+            React.useEffect(() => {
+                window.localStorage.setItem("timer", timer)
+            }, [timer])
+
+            React.useEffect(() => {
+                return () => {
+                    const intervalId = parseInt(window.localStorage.getItem("intervalId"));
+                    clearInterval(intervalId);
+                };
+            }, []);
+
+            const addTime = () => {
+                setTimer(timer + 300)
+            }
+
+            const minusTime = () => {
+                if (timer <= 300) setTimer(0)
+                else setTimer(timer - 300)
+            }
+
+            const startTimer = () => {
+                if (!state && timer > 0) {
+                    setState(true);
+                    const interval = setInterval(() => {
+                        setTimer((prevTimer) => prevTimer > 0 ? prevTimer - 1 : 0);
+                    }, 1000);
+                    window.localStorage.setItem("intervalId", interval.toString());
+                }
+            };
+
+
+            const stopTimer = () => {
+                setState(false)
+                const intervalId = parseInt(window.localStorage.getItem("intervalId"));
+                clearInterval(intervalId)
+            }
+
+            const resetTimer = () => {
+                setTimer(0)
+            }
+
+
+
+            return (
+                <div className="timer-container" >
+                    <div className="timer">
+                        <label id="time">⏱{formatTime(timer)}</label>
+                    </div>
+                    <div className="timer-button">
+                        <button id="increment-button" onClick={addTime} disabled={state}>➕</button>
+                        <button id="decrement-button" onClick={minusTime} disabled={state}>➖</button>
+                        <button disabled={timer <= 0 || state} id="start-button" onClick={startTimer} >▶</button>
+                        <button id="stop-button" onClick={stopTimer} disabled={!state}>◼</button>
+                        <button id="reset-button" onClick={resetTimer} disabled={state}>↻</button>
+                    </div>
+                </div>
+            );
+
+        }
+        function App() {
+            const [showTodoApp, setShowTodoApp] = React.useState(true);
+            const [showTimer, setShowTimer] = React.useState(true);
+
+            const handleTodoAppChange = (event) => {
+                setShowTodoApp(event.target.checked);
+            };
+
+            const handleTimerChange = (event) => {
+                setShowTimer(event.target.checked);
+            };
+
+            return (
+                <div>
+                    <div className="app-selection">
+                        <label>
+                            <input
+                                type="checkbox"
+                                checked={showTodoApp}
+                                onChange={handleTodoAppChange}
+                            />
+                            Show Todo App
+                        </label>
+                        <label>
+                            <input
+                                type="checkbox"
+                                checked={showTimer}
+                                onChange={handleTimerChange}
+                            />
+                            Show Timer
+                        </label>
+                    </div>
+                    {showTimer && <Timer />}
+                    {showTodoApp && <TodoApp />}
+                </div>
+            );
+        }
+        ReactDOM.render(<App />, document.getElementById('root'));
+
+
     </script>
 </body>
 
